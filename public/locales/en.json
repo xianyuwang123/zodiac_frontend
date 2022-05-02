@@ -1,0 +1,127 @@
+{
+  "actions": {
+    "connect": "Connect",
+    "connect_wallet": "Connect Wallet",
+    "harvest": "Harvest",
+    "deposit": "Deposit",
+    "withdraw": "Withdraw",
+    "max_amount": "MAX",
+    "pending": "Pending",
+    "approve": "Approve",
+    "sign_out": "Sign Out",
+    "copy_address": "Copy Address",
+    "view_on_ethscan": "View On Etherscan",
+    "view_on_bscscan": "View On Bscscan",
+    "view_on_okescan": "View On OKLink",
+    "view_on_maticscan": "View On Polygonscan",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "convert": "Convert",
+    "loading": "Loading",
+    "claim": "Claim",
+    "selectNetwork": "Select Network",
+    "sale": "Sale",
+    "breed": "Breed",
+    "selectWallet": "Select Wallet"
+  },
+  "wallet": {
+    "connect_metamask": "Connect to your MetaMask Wallet",
+    "connect_imtoken": "Connect to your imToken Wallet",
+    "connect_walletconnect": "Scan with WalletConnect to connect",
+    "connect_onto": "Connect to your ONTO Wallet",
+    "connect_coin98": "Connect to your Coin98 Wallet",
+    "error_title1": "Wrong network!",
+    "error_desc1": "Please switch to {{chainName}} network in your wallet.",
+    "error_title2": "Failed to enable your account!",
+    "error_desc2": "You can try another Ethereum wallet."
+  },
+  "prompt": {
+    "connecting": "Connecting...",
+    "connect_wallet": "Connect your wallet to continue",
+    "no_data": "No Data",
+    "enter_amount": "Please enter amount",
+    "input_range": "Please enter a number in the range of 0 - {{maxAmount}}"
+  },
+  "toolbar": {
+    "hide_zero_balance": "Hide Zero Balance",
+    "search_assets": "Search Assets",
+    "show_all": "Expand All",
+    "hide_all": "Collapse All",
+    "order_by": "Order By",
+    "all": "All",
+    "yours": "Staked Only"
+  },
+  "user": {
+    "account": "My Account",
+    "balance": "Token Balance",
+    "details": "My Details",
+    "pool_proportion": "Pool Proportion",
+    "total_earnings": "Earning",
+    "total_deposits": "Deposits",
+    "total_withdraws": "Total Withdraws"
+  },
+  "details": {
+    "balance": "Balance: ",
+    "withdrawable": "Withdrawable: "
+  },
+  "partner": {
+    "title": "Cooperative Partner"
+  },
+  "countdown": {
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds"
+  },
+  "transaction": {
+    "exception": "Execute Failed",
+    "details": "Details: "
+  },
+  "header": {
+    "v1": "Version v1"
+  },
+  "route": {
+    "nft": "NFT",
+    "home": "Home",
+    "marketplace": "Marketplace",
+    "myAccount": "My Account",
+    "language": "Language",
+    "mining": "NFT Mining"
+  },
+  "auditor": {
+    "auditor_title": "Smart Contract Security Audit"
+  },
+  "time": {
+    "days":"Days",
+    "hours":"Hours",
+    "minutes":"Minutes",
+    "seconds":"Seconds",
+    "next_round": "Next round of cap will be released at"
+  },
+  "moreOptions": {
+    "title": "More Options",
+    "docs": "Docs",
+    "docs_desc": "Documentation for users of BAC",
+    "anno": "Announcement",
+    "anno_desc": "Announcement for users of BAC",
+    "open_source": "Open Source",
+    "open_source_desc": "BAC is a supporter of Open Source"
+  },
+  "homePage": {
+    "sale_title": "Open Blind Box",
+    "sale_sub_title": "Get 12 zodiac signs",
+    "sale_price_title": "Blind Box Price",
+    "buy": "Buy "
+  },
+  "accountPage": {
+    "depositNote": "Your balance will be updated in 2 minutes after the deposit is successful.",
+    "withdrawNote": "Your balance will be updated in 2 minutes after the withdraw is successful.",
+    "deposit_drawer_title": "Deposit from wallet",
+    "withdraw_drawer_title": "Withdraw to wallet",
+    "fee": "Withdraw fee: 10%",
+    "receive": "Receive",
+    "buy": "BUY",
+    "address": "ADDRESS",
+    "copied": "(Copied)",
+    "search_assets": "Search ID or Name"
+  }
+}

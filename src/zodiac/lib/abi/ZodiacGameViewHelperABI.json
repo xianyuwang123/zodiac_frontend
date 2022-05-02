@@ -1,0 +1,64 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "zgAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "userNFTs",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "tokenId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "zgIndex",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "zgLevel",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "breedCount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "breedCoolDown",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "inStaking",
+            "type": "bool"
+          },
+          {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          }
+        ],
+        "internalType": "struct ZodiacGameViewHelper.NftInfo[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  }
+]

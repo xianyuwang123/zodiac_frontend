@@ -1,0 +1,127 @@
+{
+  "actions": {
+    "connect": "连接钱包",
+    "connect_wallet": "连接钱包",
+    "harvest": "提取收益",
+    "deposit": "充值",
+    "withdraw": "提现",
+    "max_amount": "最大",
+    "pending": "处理中",
+    "approve": "授权",
+    "sign_out": "退出",
+    "copy_address": "复制钱包地址",
+    "view_on_ethscan": "在Etherscan查看",
+    "view_on_bscscan": "在Bscscan查看",
+    "view_on_okescan": "在OKLink查看",
+    "view_on_maticscan": "在Polygonscan查看",
+    "confirm": "确认",
+    "cancel": "取消",
+    "convert": "转换",
+    "loading": "请等待",
+    "claim": "领取",
+    "sale": "售卖",
+    "breed": "繁殖",
+    "selectNetwork": "选择网络",
+    "selectWallet": "选择钱包"
+  },
+  "wallet": {
+    "connect_metamask": "连接您的MetaMask钱包",
+    "connect_imtoken": "连接您的imToken钱包",
+    "connect_walletconnect": "通过WalletConnect扫描进行连接",
+    "connect_onto": "连接您的ONTO钱包",
+    "connect_coin98": "连接您的Coin98钱包",
+    "error_title1": "网络错误！",
+    "error_desc1": "请在您的钱包中切换到{{chainName}}网络。",
+    "error_title2": "无法启用您的账户。",
+    "error_desc2": "请选择其他以太坊钱包。"
+  },
+  "prompt": {
+    "connecting": "连接中...",
+    "connect_wallet": "请连接您的钱包再继续",
+    "no_data": "暂无数据",
+    "enter_amount": "请输入金额",
+    "input_range": "请输入0 - {{maxAmount}} 范围内的数字"
+  },
+  "toolbar": {
+    "hide_zero_balance": "隐藏空的资产",
+    "search_assets": "搜索资产关键字",
+    "show_all": "显示所有",
+    "hide_all": "隐藏所有",
+    "order_by": "排序",
+    "all": "全部",
+    "yours": "我的资产"
+  },
+  "user": {
+    "account": "我的账户",
+    "balance": "Token余额",
+    "details": "我的详情",
+    "pool_proportion": " 个人占比",
+    "total_earnings": "当前赚取",
+    "total_deposits": "当前充值",
+    "total_withdraws": "累计提现"
+  },
+  "details": {
+    "balance": "钱包余额: ",
+    "withdrawable": "可提现: "
+  },
+  "partner": {
+    "title": "合作伙伴"
+  },
+  "countdown": {
+    "hours": "小时",
+    "minutes": "分钟",
+    "seconds": "秒"
+  },
+  "transaction": {
+    "exception": "交易异常",
+    "details": "区块链异常消息: "
+  },
+  "header": {
+    "v1": "版本v1"
+  },
+  "route": {
+    "nft": "NFT",
+    "home": "首页",
+    "marketplace": "市场",
+    "myAccount": "我的账户",
+    "language": "语言",
+    "mining": "NFT 农场"
+  },
+  "auditor": {
+    "auditor_title": "智能合约安全审计"
+  },
+  "time": {
+    "days":"天",
+    "hours":"小时",
+    "minutes":"分",
+    "seconds":"秒",
+    "next_round": "下一轮额度将在倒计时结束后开放"
+  },
+  "moreOptions": {
+    "title": "更多选项",
+    "docs": "文档",
+    "docs_desc": "BAC用户文档",
+    "anno": "公告",
+    "anno_desc": "BAC系统公告",
+    "open_source": "开源",
+    "open_source_desc": "BAC是开源协议的支持者"
+  },
+  "homePage": {
+    "sale_title": "打开盲盒",
+    "sale_sub_title": "获取十二生肖卡牌",
+    "sale_price_title": "盲盒价格",
+    "buy": "购买 "
+  },
+  "accountPage": {
+    "depositNote": "存款成功后，您的余额将在2分钟内更新。",
+    "withdrawNote": "提现成功后，您的余额将在2分钟内更新。",
+    "deposit_drawer_title": "从钱包存款",
+    "withdraw_drawer_title": "提现到钱包",
+    "fee": "手续费: 10%",
+    "receive": "收到",
+    "buy": "获取",
+    "address": "地址",
+    "copied": "(已复制)",
+    "search_assets": "搜索 卡片ID或者名称"
+  }
+}

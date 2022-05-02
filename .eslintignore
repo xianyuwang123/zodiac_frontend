@@ -1,0 +1,6 @@
+/build
+/test/unit/coverage
+/node_modules
+/src/assets/iconfont
+/dist
+.vscode
