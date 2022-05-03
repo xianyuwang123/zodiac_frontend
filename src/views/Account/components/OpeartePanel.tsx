@@ -7,20 +7,20 @@ import udp_icon from '../../../assets/img/zodiac/account/udp.png'
 import CardList from './CardList'
 import { ChainId } from '../../../types'
 import { tokenMap } from '../../../zodiac/lib/constants'
-import useTokenBalance from '../../../hooks/useTokenBalance'
-import { getFullDisplayBalance } from '../../../utils/formatBalance'
+import { getDisplayBalance } from '../../../utils/formatBalance'
 import AccountImg from '../../../assets/img/zodiac/account/account.png'
 import { useCardList } from '../../../hooks/useCardList'
+import useApprove from '../../../hooks/useApproveByAddress'
 
 const OpeartePanel: React.FC = () => {
   const { chainId }: { account: string | null; chainId: number | null } = useWallet()
   const { t } = useTranslation()
-  const udiAddr = tokenMap.UDI[chainId as ChainId] || ''
-  const udiBalance = useTokenBalance(udiAddr)
-  const udiBalanceCount = getFullDisplayBalance(udiBalance, 18, 3)
-  const udpAddr = tokenMap.UDP[chainId as ChainId] || ''
-  const udpBalance = useTokenBalance(udpAddr)
-  const udpBalanceCount = getFullDisplayBalance(udpBalance, 18, 3)
+
+  const UDPAddress = tokenMap.UDP[chainId as ChainId] || ''
+  const UDIAddress = tokenMap.UDI[chainId as ChainId] || ''
+
+  const { balance: UDPBalance } = useApprove(UDPAddress)
+  const { balance: UDIBalance } = useApprove(UDIAddress)
   const listInfo = useCardList()
 
   return (
@@ -36,13 +36,13 @@ const OpeartePanel: React.FC = () => {
         <StylePanel>
           <StylePanelLeft>
             <StylePanelImg src={udi_icon} />
-            <StylePanelBalance>{udiBalanceCount}</StylePanelBalance>
+            <StylePanelBalance>{getDisplayBalance(UDIBalance, 4, true, 3)}</StylePanelBalance>
             <StyleToken>{'UDI'}</StyleToken>
           </StylePanelLeft>
           <StylePanelButton>
             <span>
               <a
-                href={`https://pancakeswap.finance/swap?inputCurrency=BNB&outputCurrency=${udiAddr}`}
+                href={`https://pancakeswap.finance/swap?inputCurrency=BNB&outputCurrency=${UDIAddress}`}
                 target={'_blank'}
               >
                 {'Buy'}
@@ -53,13 +53,13 @@ const OpeartePanel: React.FC = () => {
         <StylePanel>
           <StylePanelLeft>
             <StylePanelImg src={udp_icon} />
-            <StylePanelBalance>{udpBalanceCount}</StylePanelBalance>
+            <StylePanelBalance>{getDisplayBalance(UDPBalance, 18, true, 3)}</StylePanelBalance>
             <StyleToken>{'UDP'}</StyleToken>
           </StylePanelLeft>
           <StylePanelButton>
             <span>
               <a
-                href={`https://pancakeswap.finance/swap?inputCurrency=BNB&outputCurrency=${udpAddr}`}
+                href={`https://pancakeswap.finance/swap?inputCurrency=BNB&outputCurrency=${UDPAddress}`}
                 target={'_blank'}
               >
                 {'Buy'}
