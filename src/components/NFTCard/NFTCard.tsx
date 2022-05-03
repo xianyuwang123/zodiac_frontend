@@ -62,7 +62,7 @@ const NFTCard: React.FC<{ cardInfo: Card }> = ({ cardInfo }) => {
 }
 
 const StyleCard = styled.div`
-  min-height: 245px;
+  min-height: 255px;
   border: 1px solid #3a3e51;
   border-radius: 10px;
   padding: 10px 10px 15px 10px;
