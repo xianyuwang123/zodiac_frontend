@@ -114,7 +114,7 @@ const BlindBoxSale: React.FC = () => {
     } else if (!UDIIsApprove) {
       return `${t('actions.approve')} UDI`
     } else {
-      return 'Open the blind box'
+      return 'Open Mystery Box'
     }
   }, [account, USDTIsApprove, UDIIsApprove, USDTBalance, UDIBalance, t])
 
