@@ -59,39 +59,12 @@ const NFTCard: React.FC<{ cardInfo: Card }> = ({ cardInfo }) => {
         </StyledTitle>
         <StyledName>{zodiacName}</StyledName>
         {zodiacImg}
-        <Tip> </Tip>
-        <StyledBtnList>
-          <SaleBtn onClick={onComingSoonModal}>{t('actions.sale')}</SaleBtn>
-          <BreedBtn
-            onClick={() => {
-              setBreedDrawer(true)
-            }}
-          >
-            {t('actions.breed')}
-          </BreedBtn>
-        </StyledBtnList>
       </StyleCard>
-      <BackDrawer
-        className="breed-drawer"
-        visible={breedDrawer}
-        onBackDrawer={onDrawerClose}
-        onCloseDrawer={onDrawerClose}
-        children={
-          <CardBreed
-            onDrawerBack={() => {
-              setBreedDrawer(true)
-            }}
-            onDrawerClose={onDrawerClose}
-            firstCardInfo={cardInfo}
-          />
-        }
-      />
     </>
   )
 }
 
 const StyleCard = styled.div`
-  min-height: 245px;
   border: 1px solid #3a3e51;
   border-radius: 10px;
   padding: 10px 10px 15px 10px;
@@ -141,33 +114,6 @@ const StyledName = styled.div`
   color: #ffffff;
   margin-bottom: 8px;
   text-align: left;
-`
-
-const StyledBtnList = styled.div`
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  width: calc(100% - 20px);
-  & > div {
-    width: 70px;
-    height: 26px;
-    line-height: 26px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 12px;
-    font-family: Poppins-Medium, Poppins;
-    font-weight: 500;
-  }
-`
-
-const SaleBtn = styled.div`
-  background: #45b26b;
-  color: #fff;
-`
-
-const BreedBtn = styled.div`
-  background: #8956fd;
-  color: #fff;
 `
 
 export default NFTCard

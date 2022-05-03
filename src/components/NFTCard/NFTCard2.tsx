@@ -2,17 +2,9 @@ import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { Card } from '../../types/Card'
 import { useTranslation } from 'react-i18next'
-import useModal from '../../hooks/useModal'
-import ComingSoonModal from '../../views/Account/components/ComingSoon'
-import CardBreed from '../CardBreed'
-import BackDrawer from '../BackDrawer'
 
 const NFTCard: React.FC<{ cardInfo: Card }> = ({ cardInfo }) => {
   const { t } = useTranslation()
-  const [breedDrawer, setBreedDrawer] = useState<boolean>(false)
-
-  const [onComingSoonModal] = useModal(<ComingSoonModal />)
-
   const { zodiacImg, zodiacLevelImg, zodiacName } = useMemo(() => {
     if (cardInfo?.zgIndex && cardInfo?.zgLevel) {
       const zodiacName = parseInt(String(parseInt(cardInfo.zgIndex) / 10))
@@ -47,9 +39,6 @@ const NFTCard: React.FC<{ cardInfo: Card }> = ({ cardInfo }) => {
     }
   }, [cardInfo])
 
-  const onDrawerClose = () => {
-    setBreedDrawer(false)
-  }
   return (
     <>
       <StyleCard>
@@ -57,46 +46,20 @@ const NFTCard: React.FC<{ cardInfo: Card }> = ({ cardInfo }) => {
           <StyledId>{`# ${`0000000${cardInfo?.tokenId ? cardInfo.tokenId : '0'}`.slice(-6)}`}</StyledId>
           {zodiacLevelImg}
         </StyledTitle>
-        <StyledName>{zodiacName}</StyledName>
         {zodiacImg}
-        <Tip> </Tip>
-        <StyledBtnList>
-          <SaleBtn onClick={onComingSoonModal}>{t('actions.sale')}</SaleBtn>
-          <BreedBtn
-            onClick={() => {
-              setBreedDrawer(true)
-            }}
-          >
-            {t('actions.breed')}
-          </BreedBtn>
-        </StyledBtnList>
+        <StyledName>{zodiacName}</StyledName>
       </StyleCard>
-      <BackDrawer
-        className="breed-drawer"
-        visible={breedDrawer}
-        onBackDrawer={onDrawerClose}
-        onCloseDrawer={onDrawerClose}
-        children={
-          <CardBreed
-            onDrawerBack={() => {
-              setBreedDrawer(true)
-            }}
-            onDrawerClose={onDrawerClose}
-            firstCardInfo={cardInfo}
-          />
-        }
-      />
     </>
   )
 }
 
 const StyleCard = styled.div`
-  min-height: 245px;
   border: 1px solid #3a3e51;
   border-radius: 10px;
-  padding: 10px 10px 15px 10px;
+  padding: 10px 10px 5px 10px;
   margin: 0 auto 5px;
   position: relative;
+  background: #1d2633;
 `
 
 const StyledTitle = styled.div`
@@ -119,6 +82,7 @@ const Tip = styled.div`
 const ZodiacImg = styled.img`
   width: 100%;
   border-radius: 10px;
+  margin-top: 5px;
 `
 
 const ZodiacLevelImg = styled.img`
@@ -135,39 +99,12 @@ const StyledId = styled.div`
 `
 
 const StyledName = styled.div`
+  margin-top: 10px;
   font-size: 12px;
   font-family: Poppins-SemiBold, Poppins;
   font-weight: 600;
   color: #ffffff;
-  margin-bottom: 8px;
-  text-align: left;
-`
-
-const StyledBtnList = styled.div`
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  width: calc(100% - 20px);
-  & > div {
-    width: 70px;
-    height: 26px;
-    line-height: 26px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 12px;
-    font-family: Poppins-Medium, Poppins;
-    font-weight: 500;
-  }
-`
-
-const SaleBtn = styled.div`
-  background: #45b26b;
-  color: #fff;
-`
-
-const BreedBtn = styled.div`
-  background: #8956fd;
-  color: #fff;
+  text-align: center;
 `
 
 export default NFTCard

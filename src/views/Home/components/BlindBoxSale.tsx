@@ -107,7 +107,7 @@ const BlindBoxSale: React.FC = () => {
       return `Loading...`
     } else if (new BigNumber(100).gt(USDTBalance.dividedBy(new BigNumber(10).pow(18)))) {
       return `Insufficient USDT`
-    } else if (new BigNumber(0.25).gt(USDTBalance.dividedBy(new BigNumber(10).pow(18)))) {
+    } else if (new BigNumber(0.25).gt(UDIBalance.dividedBy(new BigNumber(10).pow(18)))) {
       return `Insufficient UDI`
     } else if (!USDTIsApprove) {
       return `${t('actions.approve')} USDT`
