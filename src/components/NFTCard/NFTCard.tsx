@@ -54,7 +54,6 @@ const NFTCard: React.FC<{ cardInfo: Card }> = ({ cardInfo }) => {
         {zodiacImg}
         <Tip> </Tip>
         <StyledBtnList>
-          <SaleBtn onClick={onComingSoonModal}>{t('actions.sale')}</SaleBtn>
           <BreedBtn onClick={onComingSoonModal}>{t('actions.breed')}</BreedBtn>
         </StyledBtnList>
       </StyleCard>
@@ -121,7 +120,7 @@ const StyledBtnList = styled.div`
   position: absolute;
   width: calc(100% - 20px);
   & > div {
-    width: 70px;
+    width: 100%;
     height: 26px;
     line-height: 26px;
     border-radius: 10px;

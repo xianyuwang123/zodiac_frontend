@@ -73,7 +73,7 @@ const ChainList: ChainInfo[] = [
     chainName: 'Testnet',
     etherscanBaseUrl: 'https://testnet.bscscan.com',
     testnet: false,
-    disabled: false, // IS_PRODUCTION_MODE || !FEATURE_FLAGS.ENABLED.BSC_CHAIN,
+    disabled: IS_PRODUCTION_MODE || !FEATURE_FLAGS.ENABLED.BSC_CHAIN,
   },
   {
     networkName: 'OEC',

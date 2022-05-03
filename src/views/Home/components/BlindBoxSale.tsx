@@ -130,7 +130,10 @@ const BlindBoxSale: React.FC = () => {
           <Button shape="round" onClick={handleApproveAndBuyCard} disabled={pending}>
             <Dots show={pending} text={buttonStatus} />
           </Button>
-          <StyledUDILink>
+          <StyledUDILink
+            target={'_blank'}
+            href={`https://pancakeswap.finance/swap?inputCurrency=BNB&outputCurrency=${UDIAddress}`}
+          >
             {t('homePage.buy')}
             {'UDI >'}
           </StyledUDILink>
@@ -201,7 +204,7 @@ const StyledCardImg = styled.img`
   object-fit: cover;
 `
 
-const StyledUDILink = styled.p`
+const StyledUDILink = styled.a`
   margin: 0;
   font-size: 18px;
   font-family: Poppins-Medium, Poppins;
@@ -209,6 +212,10 @@ const StyledUDILink = styled.p`
   color: #93ffb9;
   line-height: 12px;
   -webkit-background-clip: text;
+  &:hover,
+  &:focus {
+    color: #93ffb9;
+  }
 `
 
 const StyledPriceTitle = styled.div`

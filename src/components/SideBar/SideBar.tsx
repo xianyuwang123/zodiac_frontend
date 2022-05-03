@@ -82,7 +82,14 @@ const SideBar: React.FC<SideBarProps> = ({ onSignout, style }) => {
               <StyleToken>{'UDI'}</StyleToken>
             </StylePanelLeft>
             <StylePanelButton>
-              <span>{'Buy'}</span>
+              <span>
+                <a
+                  href={`https://pancakeswap.finance/swap?inputCurrency=BNB&outputCurrency=${udiAddr}`}
+                  target={'_blank'}
+                >
+                  {'Buy'}
+                </a>
+              </span>
             </StylePanelButton>
           </StylePanel>
           <StylePanel>
@@ -92,7 +99,14 @@ const SideBar: React.FC<SideBarProps> = ({ onSignout, style }) => {
               <StyleToken>{'UDI'}</StyleToken>
             </StylePanelLeft>
             <StylePanelButton>
-              <span>{'Buy'}</span>
+              <span>
+                <a
+                  href={`https://pancakeswap.finance/swap?inputCurrency=BNB&outputCurrency=${udpAddr}`}
+                  target={'_blank'}
+                >
+                  {'Buy'}
+                </a>
+              </span>
             </StylePanelButton>
           </StylePanel>
         </StyleoOpeartePanel>
@@ -261,8 +275,10 @@ const StylePanelButton = styled.div`
     font-size: 12px;
     font-family: Poppins-SemiBold, Poppins;
     font-weight: 600;
-    color: #ffffff;
     zoom: 0.9;
+    & > a {
+      color: #ffffff;
+    }
   }
 `
 

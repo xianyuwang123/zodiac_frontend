@@ -40,7 +40,14 @@ const OpeartePanel: React.FC = () => {
             <StyleToken>{'UDI'}</StyleToken>
           </StylePanelLeft>
           <StylePanelButton>
-            <span>{'Buy'}</span>
+            <span>
+              <a
+                href={`https://pancakeswap.finance/swap?inputCurrency=BNB&outputCurrency=${udiAddr}`}
+                target={'_blank'}
+              >
+                {'Buy'}
+              </a>
+            </span>
           </StylePanelButton>
         </StylePanel>
         <StylePanel>
@@ -50,7 +57,14 @@ const OpeartePanel: React.FC = () => {
             <StyleToken>{'UDI'}</StyleToken>
           </StylePanelLeft>
           <StylePanelButton>
-            <span>{'Buy'}</span>
+            <span>
+              <a
+                href={`https://pancakeswap.finance/swap?inputCurrency=BNB&outputCurrency=${udpAddr}`}
+                target={'_blank'}
+              >
+                {'Buy'}
+              </a>
+            </span>
           </StylePanelButton>
         </StylePanel>
       </StyleoOpeartePanel>
@@ -118,8 +132,10 @@ const StylePanelButton = styled.div`
     font-size: 12px;
     font-family: Poppins-SemiBold, Poppins;
     font-weight: 600;
-    color: #45b26b;
     zoom: 0.9;
+    & > a {
+      color: #45b26b;
+    }
   }
 `
 
