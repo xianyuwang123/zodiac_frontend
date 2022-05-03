@@ -96,7 +96,7 @@ const SideBar: React.FC<SideBarProps> = ({ onSignout, style }) => {
             <StylePanelLeft>
               <StylePanelImg src={udp_icon} />
               <StylePanelBalance>{udpBalanceCount}</StylePanelBalance>
-              <StyleToken>{'UDI'}</StyleToken>
+              <StyleToken>{'UDP'}</StyleToken>
             </StylePanelLeft>
             <StylePanelButton>
               <span>

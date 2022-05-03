@@ -54,7 +54,7 @@ const OpeartePanel: React.FC = () => {
           <StylePanelLeft>
             <StylePanelImg src={udp_icon} />
             <StylePanelBalance>{udpBalanceCount}</StylePanelBalance>
-            <StyleToken>{'UDI'}</StyleToken>
+            <StyleToken>{'UDP'}</StyleToken>
           </StylePanelLeft>
           <StylePanelButton>
             <span>

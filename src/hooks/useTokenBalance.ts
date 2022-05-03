@@ -25,7 +25,7 @@ const useTokenBalance = (tokenAddress: string) => {
       balance = tokenAddress ? await getBalance(ethereum, tokenAddress, account ?? '') : '0'
     }
     setBalance(new BigNumber(balance))
-  }, [account, ethereum, tokenAddress, bunnyArmy])
+  }, [account, ethereum, tokenAddress, bunnyArmy, block])
 
   useEffect(() => {
     if (account && ethereum) {
