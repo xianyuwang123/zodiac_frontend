@@ -65,7 +65,7 @@ export const contractAddresses: TokenChainAddressList = {
     97: '0xB70f720B4ba3bBAD0dce58C64134d7aF0F51a009',
   },
   zodiacViewHelper: {
-    56: '0x006032cA77747e6E390dee97f9E54E8623772509',
+    56: '0x2b1011Be4F5Ee795B3610AE05aAfFD34eA68cE6d',
     97: '0xFFe540e61dE2BA64f260B38784ad30C64ea4928d',
   },
   multicall: {

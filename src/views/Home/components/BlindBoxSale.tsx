@@ -126,7 +126,7 @@ const BlindBoxSale: React.FC = () => {
         <StyledBuyBox>
           <StyledCardImg src={BlindboxImg} />
           <StyledPriceTitle>{'Blind Box Price'}</StyledPriceTitle>
-          <StyledPrice>{'100 USDT + 0.25 UDI'}</StyledPrice>
+          <StyledPrice>{'150 USDT + 0.25 UDI'}</StyledPrice>
           <Button shape="round" onClick={handleApproveAndBuyCard} disabled={pending}>
             <Dots show={pending} text={buttonStatus} />
           </Button>
