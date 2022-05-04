@@ -107,7 +107,7 @@ const BlindBoxSale: React.FC = () => {
       return `Loading...`
     } else if (new BigNumber(100).gt(USDTBalance.dividedBy(new BigNumber(10).pow(18)))) {
       return `Insufficient USDT`
-    } else if (new BigNumber(0.25).gt(UDIBalance.dividedBy(new BigNumber(10).pow(18)))) {
+    } else if (new BigNumber(0.25).gt(USDTBalance.dividedBy(new BigNumber(10).pow(4)))) {
       return `Insufficient UDI`
     } else if (!USDTIsApprove) {
       return `${t('actions.approve')} USDT`
@@ -126,7 +126,7 @@ const BlindBoxSale: React.FC = () => {
         <StyledBuyBox>
           <StyledCardImg src={BlindboxImg} />
           <StyledPriceTitle>{'Blind Box Price'}</StyledPriceTitle>
-          <StyledPrice>{'100 USDT + 0.25 UDI'}</StyledPrice>
+          <StyledPrice>{'150 USDT + 0.25 UDI'}</StyledPrice>
           <Button shape="round" onClick={handleApproveAndBuyCard} disabled={pending}>
             <Dots show={pending} text={buttonStatus} />
           </Button>
