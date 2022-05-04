@@ -42,9 +42,11 @@ export const tokenMap: TokenChainAddressList = {
     1: '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599',
   },
   UDI: {
+    56: '0xaa3b29437457cf9d995cffd06c45e0b2b37cf171',
     97: '0x92a5e28cedEE3f6542E2Bb4c888A8dcd8928205b',
   },
   UDP: {
+    56: '0xB70f720B4ba3bBAD0dce58C64134d7aF0F51a009',
     97: '0x69a36E3F40ec0D1D88935cc936f91539097C7Ba1',
   },
 }
@@ -59,9 +61,11 @@ export const contractAddresses: TokenChainAddressList = {
     1337: tokenMap.WETH[1337],
   },
   zodiac: {
+    56: '0x006032cA77747e6E390dee97f9E54E8623772509',
     97: '0xB70f720B4ba3bBAD0dce58C64134d7aF0F51a009',
   },
   zodiacViewHelper: {
+    56: '0x006032cA77747e6E390dee97f9E54E8623772509',
     97: '0xFFe540e61dE2BA64f260B38784ad30C64ea4928d',
   },
   multicall: {

@@ -61,7 +61,6 @@ const NFTCard: React.FC<{ cardInfo: Card }> = ({ cardInfo }) => {
         {zodiacImg}
         <Tip> </Tip>
         <StyledBtnList>
-          <SaleBtn onClick={onComingSoonModal}>{t('actions.sale')}</SaleBtn>
           <BreedBtn
             onClick={() => {
               setBreedDrawer(true)
@@ -91,7 +90,7 @@ const NFTCard: React.FC<{ cardInfo: Card }> = ({ cardInfo }) => {
 }
 
 const StyleCard = styled.div`
-  min-height: 245px;
+  min-height: 255px;
   border: 1px solid #3a3e51;
   border-radius: 10px;
   padding: 10px 10px 15px 10px;
@@ -149,7 +148,7 @@ const StyledBtnList = styled.div`
   position: absolute;
   width: calc(100% - 20px);
   & > div {
-    width: 70px;
+    width: 100%;
     height: 26px;
     line-height: 26px;
     border-radius: 10px;

@@ -15,10 +15,10 @@ import TelegramImg from '../../assets/img/zodiac/side/telegram.png'
 import DiscordImg from '../../assets/img/zodiac/side/discord.png'
 import { tokenMap } from '../../zodiac/lib/constants'
 import { ChainId } from '../../types'
-import useTokenBalance from '../../hooks/useTokenBalance'
-import { getFullDisplayBalance } from '../../utils/formatBalance'
 import udi_icon from '../../assets/img/zodiac/account/udi.png'
 import udp_icon from '../../assets/img/zodiac/account/udp.png'
+import useApprove from '../../hooks/useApproveByAddress'
+import { getDisplayBalance } from '../../utils/formatBalance'
 
 export interface SideBarProps {
   onSignout?: () => void
@@ -34,13 +34,11 @@ const SideBar: React.FC<SideBarProps> = ({ onSignout, style }) => {
     onSignout?.()
   }, [i18n])
 
-  const udiAddr = tokenMap.UDI[chainId as ChainId] || ''
-  const udiBalance = useTokenBalance(udiAddr)
-  const udiBalanceCount = getFullDisplayBalance(udiBalance, 18, 3)
+  const UDPAddress = tokenMap.UDP[chainId as ChainId] || ''
+  const UDIAddress = tokenMap.UDI[chainId as ChainId] || ''
 
-  const udpAddr = tokenMap.UDP[chainId as ChainId] || ''
-  const udpBalance = useTokenBalance(udpAddr)
-  const udpBalanceCount = getFullDisplayBalance(udpBalance, 18, 3)
+  const { balance: UDPBalance } = useApprove(UDPAddress)
+  const { balance: UDIBalance } = useApprove(UDIAddress)
 
   return (
     <StyledAccount style={style} id={'sidebar'}>
@@ -78,21 +76,35 @@ const SideBar: React.FC<SideBarProps> = ({ onSignout, style }) => {
           <StylePanel>
             <StylePanelLeft>
               <StylePanelImg src={udi_icon} />
-              <StylePanelBalance>{udiBalanceCount}</StylePanelBalance>
+              <StylePanelBalance>{getDisplayBalance(UDIBalance, 4, true, 3)}</StylePanelBalance>
               <StyleToken>{'UDI'}</StyleToken>
             </StylePanelLeft>
             <StylePanelButton>
-              <span>{'Buy'}</span>
+              <span>
+                <a
+                  href={`https://pancakeswap.finance/swap?inputCurrency=BNB&outputCurrency=${UDIAddress}`}
+                  target={'_blank'}
+                >
+                  {'Buy'}
+                </a>
+              </span>
             </StylePanelButton>
           </StylePanel>
           <StylePanel>
             <StylePanelLeft>
               <StylePanelImg src={udp_icon} />
-              <StylePanelBalance>{udpBalanceCount}</StylePanelBalance>
-              <StyleToken>{'UDI'}</StyleToken>
+              <StylePanelBalance>{getDisplayBalance(UDPBalance, 18, true, 3)}</StylePanelBalance>
+              <StyleToken>{'UDP'}</StyleToken>
             </StylePanelLeft>
             <StylePanelButton>
-              <span>{'Buy'}</span>
+              <span>
+                <a
+                  href={`https://pancakeswap.finance/swap?inputCurrency=BNB&outputCurrency=${UDPAddress}`}
+                  target={'_blank'}
+                >
+                  {'Buy'}
+                </a>
+              </span>
             </StylePanelButton>
           </StylePanel>
         </StyleoOpeartePanel>
@@ -261,8 +273,10 @@ const StylePanelButton = styled.div`
     font-size: 12px;
     font-family: Poppins-SemiBold, Poppins;
     font-weight: 600;
-    color: #ffffff;
     zoom: 0.9;
+    & > a {
+      color: #ffffff;
+    }
   }
 `
 
