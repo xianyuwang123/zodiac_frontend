@@ -40,6 +40,4 @@ const breed = async (zodiacContract: any, account: string, firstId: string, last
       console.log(tx)
       return tx?.transactionHash
     })
-
-  return zodiacContract.methods.breed(firstId, lastId).send({ from: account })
 }
