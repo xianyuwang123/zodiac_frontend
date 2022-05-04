@@ -45,6 +45,7 @@ const CardModal: React.FC<CardModalProps> = ({ onDismiss, maxWidth = 295, id }) 
     return {
       zodiacImg: null,
       zodiacLevelImg: null,
+      zodiacName: '',
     }
   }, [cardInfo])
 

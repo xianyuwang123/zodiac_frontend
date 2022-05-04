@@ -2,6 +2,7 @@ import { useCallback } from 'react'
 import { useWallet } from 'use-wallet'
 import { getZodiacContract } from '../zodiac/utils'
 import useZodiac from './useZodiac'
+import { BEST_ESTIMATED_GAS, calculateGasMargin } from '../zodiac/utils'
 
 export function useBuyCard() {
   const { account } = useWallet()
@@ -22,5 +23,19 @@ export function useBuyCard() {
 }
 
 const openMysteryBox = async (zodiacContract: any, account: string) => {
-  return zodiacContract.methods.openMysteryBox().send({ from: account })
+  let gas = BEST_ESTIMATED_GAS
+  try {
+    gas = await zodiacContract.methods.openMysteryBox().estimateGas({ from: account })
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+
+  return zodiacContract.methods
+    .openMysteryBox()
+    .send({ from: account, gas: calculateGasMargin(gas) })
+    .on('transactionHash', (tx: any) => {
+      console.log(tx)
+      return tx?.transactionHash
+    })
 }
