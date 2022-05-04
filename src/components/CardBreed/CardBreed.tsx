@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
-import { Button, Drawer, Input } from 'antd'
+import { Button, Drawer, Input, notification } from 'antd'
 import useMobile from '../../hooks/useMobile'
 import { useTranslation } from 'react-i18next'
 import BoxingRab_empty from '../../assets/img/bunnyArmy/main/BoxingRab_empty.png'
@@ -15,6 +15,10 @@ import BigNumber from 'bignumber.js'
 import { tokenMap } from '../../zodiac/lib/constants'
 import { ChainId } from '../../types'
 import useApprove from '../../hooks/useApproveByAddress'
+import useModal from '../../hooks/useModal'
+import SelectWalletAndNetworkModal from '../SelectWalletAndNetworkModal'
+import { useBreed } from '../../hooks/useBreed'
+import CardModal from '../../views/Home/components/CardModal'
 
 interface BunnyBreedProps {
   onDrawerClose: () => void
@@ -33,6 +37,12 @@ const CardBreed: React.FC<BunnyBreedProps> = ({ onDrawerClose, onDrawerBack, fir
   const { onApprove: handleApproveUSDT, isApprove: USDTIsApprove, balance: USDTBalance } = useApprove(USDTAddress)
   const { onApprove: handleApproveUDI, isApprove: UDIIsApprove, balance: UDIBalance } = useApprove(UDIAddress)
 
+  const [cardId, setCardId] = useState<number | null>(null)
+
+  const { onBreed } = useBreed()
+  const [onCardModal] = useModal(<CardModal id={cardId} />)
+  const [onSelectWalletAndNetworkModal] = useModal(<SelectWalletAndNetworkModal />)
+
   const onBreedDrawerShow = () => {
     onDrawerClose()
     setBreedListDrawer(true)
@@ -42,6 +52,80 @@ const CardBreed: React.FC<BunnyBreedProps> = ({ onDrawerClose, onDrawerBack, fir
     setBreedListDrawer(false)
   }
 
+  const handleBreed = async () => {
+    setPending(true)
+    try {
+      const txHash = await onBreed(firstCardInfo?.tokenId, lastCardInfo?.tokenId)
+      if (txHash) {
+        console.log('txHash', txHash)
+        const cardId = txHash?.events?.Transfer?.returnValues?.tokenId
+        if (cardId) {
+          onDrawerClose()
+          setCardId(parseInt(cardId))
+        }
+      }
+    } catch (error: any) {
+      if (error?.code === 4001) {
+        //dummy
+      } else if (error?.message) {
+        notification.warning({
+          message: t('transaction.exception'),
+          description: t('transaction.details') + error.message,
+        })
+      }
+    } finally {
+      setPending(false)
+    }
+  }
+  const handleUSDTApprove = async () => {
+    setPending(true)
+    try {
+      const txHash = await handleApproveUSDT()
+      console.log(txHash)
+    } catch (error: any) {
+      if (error?.code === 4001) {
+        //dummy
+      }
+    } finally {
+      setPending(false)
+    }
+  }
+  const handleUDIApprove = async () => {
+    setPending(true)
+    try {
+      const txHash = await handleApproveUDI()
+      console.log(txHash)
+    } catch (error: any) {
+      if (error?.code === 4001) {
+        //dummy
+      }
+    } finally {
+      setPending(false)
+    }
+  }
+
+  const handleApproveAndBreed = async () => {
+    if (!account) {
+      onSelectWalletAndNetworkModal()
+    } else {
+      if (!lastCardInfo) {
+        onBreedDrawerShow()
+      } else if (!USDTIsApprove) {
+        await handleUSDTApprove()
+      } else if (!UDIIsApprove) {
+        await handleUDIApprove()
+      } else {
+        await handleBreed()
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (cardId) {
+      onCardModal()
+    }
+  }, [cardId])
+
   const buttonStatus = useMemo(() => {
     if (!account) {
       return t('actions.connect_wallet')
@@ -49,7 +133,7 @@ const CardBreed: React.FC<BunnyBreedProps> = ({ onDrawerClose, onDrawerBack, fir
       return 'Choose Zodiac'
     } else if (new BigNumber(100).gt(USDTBalance.dividedBy(new BigNumber(10).pow(18)))) {
       return `Insufficient USDT`
-    } else if (new BigNumber(0.25).gt(UDIBalance.dividedBy(new BigNumber(10).pow(18)))) {
+    } else if (new BigNumber(0.25).gt(UDIBalance.dividedBy(new BigNumber(10).pow(4)))) {
       return `Insufficient UDI`
     } else if (!USDTIsApprove) {
       return `${t('actions.approve')} USDT`
@@ -79,7 +163,7 @@ const CardBreed: React.FC<BunnyBreedProps> = ({ onDrawerClose, onDrawerBack, fir
         </StyledBreedWrapper>
         <StyledPriceTitle>{'Blind Box Price'}</StyledPriceTitle>
         <StyledPrice>{'100 USDT + 0.25 UDI'}</StyledPrice>
-        <Button shape="round" onClick={onBreedDrawerShow}>
+        <Button shape="round" onClick={handleApproveAndBreed}>
           <Dots show={pending} text={buttonStatus} />
         </Button>
       </StyledContent>
