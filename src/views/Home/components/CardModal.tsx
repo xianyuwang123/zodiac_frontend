@@ -16,7 +16,7 @@ const CardModal: React.FC<CardModalProps> = ({ onDismiss, maxWidth = 295, id }) 
 
   const { zodiacImg, zodiacLevelImg, zodiacName } = useMemo(() => {
     if (cardInfo?.zgIndex && cardInfo?.zgLevel) {
-      const zodiacName = cardInfo.zgIndex.slice(0, cardInfo.zgIndex.length - 1)
+      const zodiacName = parseInt(String(parseInt(cardInfo.zgIndex) / 10))
       const zodiacType = cardInfo.zgIndex.slice(-1)
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const zodiacImg = require(`../../../assets/img/zodiac/nft/zg_${zodiacName}_${zodiacType}.png`).default
@@ -39,7 +39,7 @@ const CardModal: React.FC<CardModalProps> = ({ onDismiss, maxWidth = 295, id }) 
       return {
         zodiacImg: <ZodiacImg src={zodiacImg} />,
         zodiacLevelImg: <ZodiacLevelImg src={zodiacLevelImg} />,
-        zodiacName: nameList[parseInt(zodiacName) - 1],
+        zodiacName: nameList[zodiacName],
       }
     }
     return {
