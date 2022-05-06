@@ -30,6 +30,7 @@ const breed = async (zodiacContract: any, account: string, firstId: string, last
   try {
     gas = await zodiacContract.methods.breed(firstId, lastId).estimateGas({ from: account })
   } catch (error) {
+    console.log(error)
     throw error
   }
 

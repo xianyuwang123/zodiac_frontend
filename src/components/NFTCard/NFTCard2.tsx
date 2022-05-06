@@ -8,7 +8,7 @@ const NFTCard: React.FC<{ cardInfo: Card }> = ({ cardInfo }) => {
   const { zodiacImg, zodiacLevelImg, zodiacName } = useMemo(() => {
     if (cardInfo?.zgIndex && cardInfo?.zgLevel) {
       const zodiacName = parseInt(String(parseInt(cardInfo.zgIndex) / 10))
-      const zodiacType = cardInfo.zgIndex.slice(-1)
+      const zodiacType = parseInt(cardInfo.zgIndex.slice(-1)) % 5
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const zodiacImg = require(`../../assets/img/zodiac/nft/zg_${zodiacName}_${zodiacType}.png`).default
       // eslint-disable-next-line @typescript-eslint/no-var-requires

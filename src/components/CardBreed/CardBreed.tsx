@@ -32,9 +32,9 @@ const CardBreed: React.FC<BunnyBreedProps> = ({ onDrawerClose, onDrawerBack, fir
   const { chainId, account }: { chainId: number | null; account: string | null } = useWallet()
   const [breedListDrawer, setBreedListDrawer] = useState<boolean>(false)
   const [pending, setPending] = useState<boolean>(false)
-  const USDTAddress = tokenMap.USDT[chainId as ChainId] || ''
+  const UDPAddress = tokenMap.UDP[chainId as ChainId] || ''
   const UDIAddress = tokenMap.UDI[chainId as ChainId] || ''
-  const { onApprove: handleApproveUSDT, isApprove: USDTIsApprove, balance: USDTBalance } = useApprove(USDTAddress)
+  const { onApprove: handleApproveUDP, isApprove: UDPIsApprove, balance: UDPBalance } = useApprove(UDPAddress)
   const { onApprove: handleApproveUDI, isApprove: UDIIsApprove, balance: UDIBalance } = useApprove(UDIAddress)
 
   const [cardId, setCardId] = useState<number | null>(null)
@@ -57,7 +57,6 @@ const CardBreed: React.FC<BunnyBreedProps> = ({ onDrawerClose, onDrawerBack, fir
     try {
       const txHash = await onBreed(firstCardInfo?.tokenId, lastCardInfo?.tokenId)
       if (txHash) {
-        console.log('txHash', txHash)
         const cardId = txHash?.events?.Transfer?.returnValues?.tokenId
         if (cardId) {
           onDrawerClose()
@@ -77,10 +76,10 @@ const CardBreed: React.FC<BunnyBreedProps> = ({ onDrawerClose, onDrawerBack, fir
       setPending(false)
     }
   }
-  const handleUSDTApprove = async () => {
+  const handleUDPApprove = async () => {
     setPending(true)
     try {
-      const txHash = await handleApproveUSDT()
+      const txHash = await handleApproveUDP()
       console.log(txHash)
     } catch (error: any) {
       if (error?.code === 4001) {
@@ -110,8 +109,8 @@ const CardBreed: React.FC<BunnyBreedProps> = ({ onDrawerClose, onDrawerBack, fir
     } else {
       if (!lastCardInfo) {
         onBreedDrawerShow()
-      } else if (!USDTIsApprove) {
-        await handleUSDTApprove()
+      } else if (!UDPIsApprove) {
+        await handleUDPApprove()
       } else if (!UDIIsApprove) {
         await handleUDIApprove()
       } else {
@@ -131,18 +130,18 @@ const CardBreed: React.FC<BunnyBreedProps> = ({ onDrawerClose, onDrawerBack, fir
       return t('actions.connect_wallet')
     } else if (!lastCardInfo) {
       return 'Choose Zodiac'
-    } else if (new BigNumber(100).gt(USDTBalance.dividedBy(new BigNumber(10).pow(18)))) {
-      return `Insufficient USDT`
+    } else if (new BigNumber(100).gt(UDPBalance.dividedBy(new BigNumber(10).pow(18)))) {
+      return `Insufficient UDP`
     } else if (new BigNumber(0.25).gt(UDIBalance.dividedBy(new BigNumber(10).pow(4)))) {
       return `Insufficient UDI`
-    } else if (!USDTIsApprove) {
-      return `${t('actions.approve')} USDT`
+    } else if (!UDPIsApprove) {
+      return `${t('actions.approve')} UDP`
     } else if (!UDIIsApprove) {
       return `${t('actions.approve')} UDI`
     } else {
       return 'Breek'
     }
-  }, [account, t, lastCardInfo, USDTIsApprove, UDIIsApprove, USDTBalance, UDIBalance])
+  }, [account, t, lastCardInfo, UDPIsApprove, UDIIsApprove, UDPBalance, UDIBalance])
 
   return (
     <>
@@ -162,7 +161,7 @@ const CardBreed: React.FC<BunnyBreedProps> = ({ onDrawerClose, onDrawerBack, fir
           </StyledCardWarpper>
         </StyledBreedWrapper>
         <StyledPriceTitle>{'Blind Box Price'}</StyledPriceTitle>
-        <StyledPrice>{'100 USDT + 0.25 UDI'}</StyledPrice>
+        <StyledPrice>{'100 UDP + 0.25 UDI'}</StyledPrice>
         <Button shape="round" onClick={handleApproveAndBreed}>
           <Dots show={pending} text={buttonStatus} />
         </Button>
