@@ -36,7 +36,7 @@ const breed = async (zodiacContract: any, account: string, firstId: string, last
 
   return zodiacContract.methods
     .breed(firstId, lastId)
-    .send({ from: account, gas: calculateGasMargin(gas)})
+    .send({ from: account, gas: calculateGasMargin(gas) })
     .on('transactionHash', (tx: any) => {
       console.log(tx)
       return tx?.transactionHash

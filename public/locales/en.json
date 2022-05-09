@@ -122,6 +122,8 @@
     "buy": "BUY",
     "address": "ADDRESS",
     "copied": "(Copied)",
+    "maxBreedCount": "Maximum reproduction times",
+    "breedCoolDown": "Reproductive cooling period",
     "search_assets": "Search ID or Name"
   }
 }

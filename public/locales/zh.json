@@ -122,6 +122,8 @@
     "buy": "获取",
     "address": "地址",
     "copied": "(已复制)",
+    "maxBreedCount": "超过最大繁殖次数",
+    "breedCoolDown": "繁殖冷却期",
     "search_assets": "搜索 卡片ID或者名称"
   }
 }

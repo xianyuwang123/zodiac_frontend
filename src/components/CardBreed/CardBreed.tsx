@@ -1,9 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { Button, Drawer, Input, notification } from 'antd'
-import useMobile from '../../hooks/useMobile'
 import { useTranslation } from 'react-i18next'
-import BoxingRab_empty from '../../assets/img/bunnyArmy/main/BoxingRab_empty.png'
 import ChooseImg from '../../assets/img/zodiac/account/choose.png'
 import BackDrawer from '../BackDrawer'
 import CardSelect from '../CardSelect'
@@ -19,6 +17,7 @@ import useModal from '../../hooks/useModal'
 import SelectWalletAndNetworkModal from '../SelectWalletAndNetworkModal'
 import { useBreed } from '../../hooks/useBreed'
 import CardModal from '../../views/Home/components/CardModal'
+import QuestionImg from '../../assets/img/zodiac/account/question.png'
 
 interface BunnyBreedProps {
   onDrawerClose: () => void
@@ -157,7 +156,16 @@ const CardBreed: React.FC<BunnyBreedProps> = ({ onDrawerClose, onDrawerBack, fir
           </StyledCardWarpper>
           <StyledChooseImg src={ChooseImg} />
           <StyledCardWarpper>
-            {lastCardInfo ? <NFTCard2 cardInfo={lastCardInfo} /> : <StyledCardWarpper>1</StyledCardWarpper>}
+            {lastCardInfo ? (
+              <NFTCard2 cardInfo={lastCardInfo} />
+            ) : (
+              <StyledCardWarpper2>
+                <img src={QuestionImg} />
+                <div onClick={handleApproveAndBreed}>
+                  <Dots show={pending} text={'choose'} />
+                </div>
+              </StyledCardWarpper2>
+            )}
           </StyledCardWarpper>
         </StyledBreedWrapper>
         <StyledPriceTitle>{'Blind Box Price'}</StyledPriceTitle>
@@ -222,6 +230,37 @@ const StyledBreedWrapper = styled.div`
 const StyledCardWarpper = styled.div`
   width: 140px;
   height: 180px;
+`
+
+const StyledCardWarpper2 = styled.div`
+  width: 140px;
+  height: 180px;
+  background: #3a4255;
+  border-radius: 10px;
+  & > img {
+    width: 21px;
+    margin-top: 60px;
+  }
+  & > div {
+    display: flex;
+    margin: 37px auto 0;
+    justify-content: center;
+    line-height: 26px;
+    width: 70px;
+    height: 26px;
+    background: #45b26b;
+    border-radius: 10px;
+    border-color: #45b26b;
+    font-size: 12px;
+    font-family: Poppins-SemiBold, Poppins;
+    font-weight: 600;
+    color: #ffffff;
+    opacity: 0.9;
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+  }
 `
 
 const StyledChooseImg = styled.img`

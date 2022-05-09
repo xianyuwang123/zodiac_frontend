@@ -6,12 +6,11 @@ import useModal from '../../hooks/useModal'
 import ComingSoonModal from '../../views/Account/components/ComingSoon'
 import CardBreed from '../CardBreed'
 import BackDrawer from '../BackDrawer'
+import BigNumber from 'bignumber.js'
 
 const NFTCard: React.FC<{ cardInfo: Card }> = ({ cardInfo }) => {
   const { t } = useTranslation()
   const [breedDrawer, setBreedDrawer] = useState<boolean>(false)
-
-  const [onComingSoonModal] = useModal(<ComingSoonModal />)
 
   const { zodiacImg, zodiacLevelImg, zodiacName } = useMemo(() => {
     if (cardInfo?.zgIndex && cardInfo?.zgLevel) {
@@ -47,6 +46,26 @@ const NFTCard: React.FC<{ cardInfo: Card }> = ({ cardInfo }) => {
     }
   }, [cardInfo])
 
+  const { buttonDisabled, tip } = useMemo(() => {
+    if (cardInfo) {
+      if (parseInt(cardInfo.breedCount) >= 3) {
+        return {
+          buttonDisabled: true,
+          tip: t('accountPage.maxBreedCount'),
+        }
+      } else if (new BigNumber(cardInfo.breedCoolDown).gt(parseInt(String(new Date().getTime() / 1000)))) {
+        return {
+          buttonDisabled: true,
+          tip: t('accountPage.breedCoolDown'),
+        }
+      }
+    }
+    return {
+      buttonDisabled: false,
+      tip: ' ',
+    }
+  }, [cardInfo, t])
+
   const onDrawerClose = () => {
     setBreedDrawer(false)
   }
@@ -59,11 +78,14 @@ const NFTCard: React.FC<{ cardInfo: Card }> = ({ cardInfo }) => {
         </StyledTitle>
         <StyledName>{zodiacName}</StyledName>
         {zodiacImg}
-        <Tip> </Tip>
+        <Tip>{tip}</Tip>
         <StyledBtnList>
           <BreedBtn
+            className={buttonDisabled ? 'disabled' : ''}
             onClick={() => {
-              setBreedDrawer(true)
+              if (!buttonDisabled) {
+                setBreedDrawer(true)
+              }
             }}
           >
             {t('actions.breed')}
@@ -112,7 +134,7 @@ const Tip = styled.div`
   height: 20px;
   line-height: 20px;
   text-align: center;
-  color: #ffffff;
+  color: #ff5e19;
 `
 
 const ZodiacImg = styled.img`
@@ -167,6 +189,10 @@ const SaleBtn = styled.div`
 const BreedBtn = styled.div`
   background: #8956fd;
   color: #fff;
+  &.disabled {
+    color: rgba(0, 0, 0, 0.25);
+    background: #d9d9d9;
+  }
 `
 
 export default NFTCard

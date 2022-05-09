@@ -7,6 +7,7 @@ import { useCardList } from '../../hooks/useCardList'
 import NFTCard3 from '../NFTCard/NFTCard3'
 import CardBreed from '../CardBreed'
 import { Card } from '../../types/Card'
+import BigNumber from 'bignumber.js/bignumber'
 
 interface SelectProps {
   onDrawerClose: () => void
@@ -26,7 +27,10 @@ const CardSelect: React.FC<SelectProps> = ({ onDrawerClose, firstCardInfo }) => 
 
   const filterList = useMemo(() => {
     if (listInfo) {
-      return listInfo.filter((card) => card.tokenId !== firstCardInfo.tokenId)
+      return listInfo
+        .filter((card) => card.tokenId !== firstCardInfo.tokenId)
+        .filter((card) => firstCardInfo.zgLevel === card.zgLevel)
+        .filter((card) => new BigNumber(parseInt(String(new Date().getTime() / 1000))).gt(card.breedCoolDown))
     }
     return listInfo
   }, [listInfo])

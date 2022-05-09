@@ -34,8 +34,8 @@ const getCardInfo = async (zodiacContract: Contract, account: string, id: number
     const cardInfo = await zodiacContract.methods.zodiacInfo(id).call()
     return {
       zgIndex: cardInfo.zgIndex,
-      zgBreedCount: cardInfo.zgBreedCount,
-      breedCoolDownAt: cardInfo.breedCoolDownAt,
+      breedCount: cardInfo.zgBreedCount,
+      breedCoolDown: cardInfo.breedCoolDownAt,
       inStaking: cardInfo.inStaking,
       owner: cardInfo.owner,
       zgLevel: cardInfo.zgLevel,

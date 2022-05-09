@@ -1,7 +1,7 @@
 export interface Card {
   zgIndex: string
-  zgBreedCount: string
-  breedCoolDownAt: string
+  breedCount: string
+  breedCoolDown: string
   inStaking: boolean
   owner: string
   zgLevel: string
