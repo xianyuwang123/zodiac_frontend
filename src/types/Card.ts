@@ -7,3 +7,9 @@ export interface Card {
   zgLevel: string
   tokenId: string
 }
+
+export interface CardExt {
+  currentPoint: string
+  power: string
+  level: string
+}

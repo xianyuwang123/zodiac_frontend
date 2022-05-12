@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import MiningImg from '../../../assets/img/zodiac/side/mining.png'
 import { useTranslation } from 'react-i18next'
@@ -8,11 +8,13 @@ import { Button } from 'antd'
 import Dots from '../../../components/Dots'
 import { useHarvest } from '../../../hooks/useHarvest'
 import { useUserInfo } from '../../../hooks/useUserInfo'
+import { useCardList } from '../../../hooks/useCardList'
 
 const OpeartePanel: React.FC = () => {
   const { t } = useTranslation()
 
   const [pending, setPending] = useState<boolean>(false)
+  const listInfo = useCardList()
 
   const { onHarvest } = useHarvest()
   const userInfo = useUserInfo()
@@ -31,6 +33,14 @@ const OpeartePanel: React.FC = () => {
     }
   }
 
+  const stakeNFT = useMemo(() => {
+    if (listInfo) {
+      const length = listInfo.filter((card) => card.inStaking).length
+      return length
+    }
+    return '0'
+  }, [listInfo])
+
   return (
     <>
       <StyleTitleWrapper>
@@ -43,17 +53,19 @@ const OpeartePanel: React.FC = () => {
         <StyledRewardInfo>
           <StyledRewardInfoLeft>
             <div>{'Participate'}</div>
-            <div>{'10 NFTs'}</div>
+            <div>{`${stakeNFT} NFT`}</div>
           </StyledRewardInfoLeft>
           <StyledRewardInfoRight>
             <div>{'Total Reward'}</div>
-            <div>{'1,000,000 UDP'}</div>
+            <div>{`${userInfo?.totalEarn ? getDisplayBalance(userInfo?.totalEarn, 19, true, 2) : '0'} UDP`}</div>
           </StyledRewardInfoRight>
         </StyledRewardInfo>
         <StyledReward>
           <StyledRewardLeft>
             <div>{'Reward'}</div>
-            <div>{'1,000,000 UDP'}</div>
+            <div>{`${
+              userInfo?.pendingReward ? getDisplayBalance(userInfo?.pendingReward, 19, true, 2) : '0'
+            } UDP`}</div>
           </StyledRewardLeft>
           <Button shape="round" onClick={handleHarvest} disabled={pending}>
             <Dots show={pending} text={t('actions.harvest')} />
