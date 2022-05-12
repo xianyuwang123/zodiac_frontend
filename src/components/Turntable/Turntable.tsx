@@ -11,13 +11,13 @@ import TurntableImg from '../../assets/img/zodiac/mining/turntable.png'
 import PointerImg from '../../assets/img/zodiac/mining/pointer.png'
 import { useCardExtInfo, useHashPower } from '../../hooks/useCardInfo'
 
-interface BunnyBreedProps {
+interface breedProps {
   onDrawerClose: () => void
   onDrawerBack: () => void
   cardInfo: Card
 }
 
-const Turntable: React.FC<BunnyBreedProps> = ({ onDrawerClose, onDrawerBack, cardInfo }) => {
+const Turntable: React.FC<breedProps> = ({ onDrawerClose, onDrawerBack, cardInfo }) => {
   const { t } = useTranslation()
   const [pending, setPending] = useState<boolean>(false)
   const [multiply, setMultiply] = useState<number | null>(null)
@@ -198,7 +198,8 @@ const StyledInfo = styled.div`
 const StyledContent = styled.div`
   margin-top: 60px;
   text-align: center;
-  overflow-y: scroll;
+  max-width: 475px;
+  margin: 0 auto;
   & > button {
     display: flex;
     margin: 37px auto 0;
@@ -248,7 +249,7 @@ const StyledTurnTableWrapper = styled.div`
   width: 100%;
   position: relative;
   margin-bottom: 20px;
-  height: 100vw;
+  padding-bottom: 100%;
 `
 
 const StyledTurnTable = styled.img`
