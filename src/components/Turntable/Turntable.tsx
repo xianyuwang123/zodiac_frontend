@@ -66,15 +66,15 @@ const Turntable: React.FC<breedProps> = ({ onDrawerClose, onDrawerBack, cardInfo
         }
       }, 1)
       setTimeout(() => {
-        setX(multiply)
+        // setX(multiply)
         setMultiply(null)
-        onDrawerClose()
+        // onDrawerClose()
         const dom = document.getElementById('turnTable')
         if (dom) {
           dom.style.transition = `unset`
           dom.style.transform = `rotate(0deg)`
         }
-      }, 1 + time + 5000)
+      }, 1 + time + 1000)
     }
   }, [multiply, node])
 
