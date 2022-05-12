@@ -100,7 +100,9 @@ export function useHashPower() {
           .dividedBy(1000)
           .dividedBy(24 * 60 * 60)
           .toFixed(0, 0)
-        setHashPower(new BigNumber(udpPerDay).dividedBy(new BigNumber(10).pow(18)).dividedBy(day).toFixed(2))
+        setHashPower(
+          new BigNumber(udpPerDay).dividedBy(new BigNumber(10).pow(18)).times(1000).dividedBy(day).toFixed(2)
+        )
       }
     }
   }, [account, block, zodiacLandContract])

@@ -33,15 +33,13 @@ const Turntable: React.FC<breedProps> = ({ onDrawerClose, onDrawerBack, cardInfo
   const handleStake = async () => {
     setPending(true)
     try {
+      setRun(true)
       const txHash = await onStake(cardInfo.tokenId)
-      if (txHash) {
-        if (txHash?.events?.RandomScale?.returnValues?.scale) {
-          setMultiply(parseInt(txHash?.events?.RandomScale?.returnValues?.scale))
-        }
-      }
+      setMultiply(parseInt(txHash?.events?.RandomScale?.returnValues?.scale))
     } catch (error: any) {
       if (error?.code === 4001) {
         //dummy
+        setRun(false)
       } else if (error?.message) {
         notification.warning({
           message: t('transaction.exception'),
@@ -50,6 +48,7 @@ const Turntable: React.FC<breedProps> = ({ onDrawerClose, onDrawerBack, cardInfo
       }
     } finally {
       setPending(false)
+      setRun(false)
     }
   }
 
@@ -57,7 +56,6 @@ const Turntable: React.FC<breedProps> = ({ onDrawerClose, onDrawerBack, cardInfo
     if (multiply) {
       // 执行动画
       const time = 125 * multiply
-      setRun(true)
       setTimeout(() => {
         setRun(false)
         if (node) {
@@ -66,7 +64,7 @@ const Turntable: React.FC<breedProps> = ({ onDrawerClose, onDrawerBack, cardInfo
             `transition: all ${0.125 * (multiply + 7)}s; transform: rotate(-${45 * (multiply + 7)}deg)`
           )
         }
-      }, 6000)
+      }, 1)
       setTimeout(() => {
         setX(multiply)
         setMultiply(null)
@@ -76,7 +74,7 @@ const Turntable: React.FC<breedProps> = ({ onDrawerClose, onDrawerBack, cardInfo
           dom.style.transition = `unset`
           dom.style.transform = `rotate(0deg)`
         }
-      }, 6000 + time + 2000)
+      }, 1 + time + 2000)
     }
   }, [multiply, node])
 
@@ -116,9 +114,7 @@ const Turntable: React.FC<breedProps> = ({ onDrawerClose, onDrawerBack, cardInfo
           />
         </StyledTurnTableWrapper>
         <StyledMultiplyInfo>
-          <span>{`${
-            cardExtInfo?.currentPoint && cardExtInfo?.currentPoint !== '0' ? `X${cardExtInfo.currentPoint}` : '-'
-          }`}</span>
+          <span>{`${cardExtInfo?.power && cardExtInfo?.power !== '0' ? `X${cardExtInfo.power}` : '-'}`}</span>
           <StyledMultiplyTitle>{'Multiplier today'}</StyledMultiplyTitle>
         </StyledMultiplyInfo>
         <StyledInfo>
