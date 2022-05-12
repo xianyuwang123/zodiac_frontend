@@ -74,7 +74,7 @@ const Turntable: React.FC<breedProps> = ({ onDrawerClose, onDrawerBack, cardInfo
           dom.style.transition = `unset`
           dom.style.transform = `rotate(0deg)`
         }
-      }, 1 + time + 2000)
+      }, 1 + time + 5000)
     }
   }, [multiply, node])
 
