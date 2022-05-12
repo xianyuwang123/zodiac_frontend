@@ -21,7 +21,7 @@ const BackDrawer: React.FC<BackDrawerProps> = ({ visible, onBackDrawer, onCloseD
       <StyledBackIcon onClick={onBackDrawer}>
         <i className="iconfont icon-xiangzuo"></i>
       </StyledBackIcon>
-      <StyledTitle>{'Breek'}</StyledTitle>
+      <StyledTitle>{className === 'turntable-drawer' ? '' : 'Breek'}</StyledTitle>
       <StyledCloseIcon onClick={onCloseDrawer}>
         <i className="iconfont icon-close"></i>
       </StyledCloseIcon>

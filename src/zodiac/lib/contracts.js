@@ -1,6 +1,7 @@
 import BigNumber from 'bignumber.js/bignumber'
 import zodiacGameABI from './abi/ZodiacGameABI.json'
 import zodiacGameViewHelperABI from './abi/ZodiacGameViewHelperABI.json'
+import zodiacLandABI from './abi/ZodiacLandABI.json'
 import WETHAbi from './abi/weth.json'
 import MulticallAbi from './abi/multicall.json'
 import UsdtAbi from './abi/usdt.json'
@@ -20,6 +21,7 @@ export class Contracts {
     this.weth = new this.web3.eth.Contract(WETHAbi)
     this.zodiac = new this.web3.eth.Contract(zodiacGameABI)
     this.zodiacViewHelper = new this.web3.eth.Contract(zodiacGameViewHelperABI)
+    this.zodiacLand = new this.web3.eth.Contract(zodiacLandABI)
     this.multicall = new this.web3.eth.Contract(MulticallAbi)
     this.usdt = new this.web3.eth.Contract(UsdtAbi)
 
@@ -38,6 +40,7 @@ export class Contracts {
 
     setProvider(this.zodiac, contractAddresses.zodiac[networkId])
     setProvider(this.zodiacViewHelper, contractAddresses.zodiacViewHelper[networkId])
+    setProvider(this.zodiacLand, contractAddresses.zodiacLand[networkId])
     setProvider(this.weth, contractAddresses.weth[networkId])
     setProvider(this.multicall, contractAddresses.multicall[networkId])
     setProvider(this.usdt, contractAddresses.usdt[networkId])

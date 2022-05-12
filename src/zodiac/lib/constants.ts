@@ -68,6 +68,9 @@ export const contractAddresses: TokenChainAddressList = {
     56: '0x2b1011Be4F5Ee795B3610AE05aAfFD34eA68cE6d',
     97: '0xFFe540e61dE2BA64f260B38784ad30C64ea4928d',
   },
+  zodiacLand: {
+    97: '0x0812C64feec4475EE75c78f0276Ac9cdF4899AD3',
+  },
   multicall: {
     1: '0xeefba1e63905ef1d7acba5a8513c70307c1ce441',
     42: '0x2cc8688c5f75e365aaeeb4ea8d6a480405a48d2a',

@@ -52,6 +52,10 @@ export const getZodiacViewHelperContract = (dApp) => {
   return dApp && dApp.contracts && dApp.contracts.zodiacViewHelper
 }
 
+export const getZodiacLandContract = (dApp) => {
+  return dApp && dApp.contracts && dApp.contracts.zodiacLand
+}
+
 export const getWeb3 = (dApp) => {
   return dApp?.web3
 }
