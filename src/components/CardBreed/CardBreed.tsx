@@ -138,7 +138,7 @@ const CardBreed: React.FC<BunnyBreedProps> = ({ onDrawerClose, onDrawerBack, fir
     } else if (!UDIIsApprove) {
       return `${t('actions.approve')} UDI`
     } else {
-      return 'Breek'
+      return 'Breed'
     }
   }, [account, t, lastCardInfo, UDPIsApprove, UDIIsApprove, UDPBalance, UDIBalance])
 
