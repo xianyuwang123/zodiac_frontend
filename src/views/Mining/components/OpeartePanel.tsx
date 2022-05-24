@@ -57,14 +57,18 @@ const OpeartePanel: React.FC = () => {
           </StyledRewardInfoLeft>
           <StyledRewardInfoRight>
             <div>{'Total Reward'}</div>
-            <div>{`${userInfo?.totalEarn ? getDisplayBalance(userInfo?.totalEarn, 19, true, 2) : '0'} UDP`}</div>
+            <div>{`${userInfo?.totalEarn ? getDisplayBalance(userInfo?.totalEarn, 18, true, 2) : '0'} UDP`}</div>
+          </StyledRewardInfoRight>
+          <StyledRewardInfoRight>
+            <div>{'Total Point'}</div>
+            <div>{`${userInfo?.totalPoint}`}</div>
           </StyledRewardInfoRight>
         </StyledRewardInfo>
         <StyledReward>
           <StyledRewardLeft>
             <div>{'Reward'}</div>
             <div>{`${
-              userInfo?.pendingReward ? getDisplayBalance(userInfo?.pendingReward, 19, true, 2) : '0'
+              userInfo?.pendingReward ? getDisplayBalance(userInfo?.pendingReward, 18, true, 2) : '0'
             } UDP`}</div>
           </StyledRewardLeft>
           <Button shape="round" onClick={handleHarvest} disabled={pending}>
@@ -170,7 +174,7 @@ const StyledRewardInfo = styled.div`
 `
 
 const StyledRewardInfoLeft = styled.div`
-  flex: 0 0 37%;
+  flex: 0 0 30%;
   border-right: 1px solid #29374b;
   & > :first-child {
     font-size: 14px;
@@ -191,7 +195,7 @@ const StyledRewardInfoLeft = styled.div`
 const StyledRewardInfoRight = styled.div`
   margin-left: 20px;
   & > :first-child {
-    font-size: 14px;
+    font-size: 12px;
     font-family: Poppins-Regular, Poppins;
     font-weight: 400;
     color: #777e90;
