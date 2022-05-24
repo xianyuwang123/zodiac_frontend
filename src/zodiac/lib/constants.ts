@@ -46,7 +46,7 @@ export const tokenMap: TokenChainAddressList = {
     97: '0x92a5e28cedEE3f6542E2Bb4c888A8dcd8928205b',
   },
   UDP: {
-    56: '0xB70f720B4ba3bBAD0dce58C64134d7aF0F51a009',
+    56: '0xBaA96ff6FD02010e3eE5a86d2Bb7c62e6Ce811DD',
     97: '0x69a36E3F40ec0D1D88935cc936f91539097C7Ba1',
   },
 }
@@ -90,9 +90,11 @@ export const contractAddresses: TokenChainAddressList = {
     1337: tokenMap.USDT[1337],
   },
   udi: {
+    56: tokenMap.UDI[56],
     97: tokenMap.UDI[97],
   },
   udp: {
+    56: tokenMap.UDP[56],
     97: tokenMap.UDP[97],
   },
 }
